@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const router = require('express').Router();
 
-//middlewares ?
+const { isAuthenticated } = require('../middlewares/jwt.middleware');
 
 const User = require('../models/User.model');
 
@@ -79,6 +79,10 @@ router.post('/login', async (req, res, next) => {
     } catch (error) {
         next(error);
     }
+});
+
+router.get('/verify', isAuthenticated, (req, res, next) => {
+    res.status(200).json(req.payload)
 });
 
 

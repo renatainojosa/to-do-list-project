@@ -1,4 +1,4 @@
-const jwt = require('express-jwt');
+const { expressjwt: ejwt } = require('express-jwt');
 
 const getTokenFromHeaders = (req) => {
     const {authorization} = req.headers;
@@ -6,14 +6,15 @@ const getTokenFromHeaders = (req) => {
     if (!authorization) return null;
 
     const [type, token] = authorization.split(' ');
-    if (type === 'Bearer') return token;
-
+    if (type === 'Bearer') {
+        return token;
+    }
     return null;
 }
 
-const isAuthenticated = jwt({
+const isAuthenticated = ejwt({
     secret: process.env.JWT_SECRET,
-    algotithms: ['HS256'],
+    algorithms: ['HS256'],
     requestProperty: 'payload',
     getToken: getTokenFromHeaders,
 });
