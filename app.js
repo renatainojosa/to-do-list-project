@@ -3,14 +3,13 @@ const express = require('express');
 const app = express();
 
 //banco de dados
+require('./db')
 
 //configurações
 
 //rotas
 
 //erros
-app.use((req, res, next) => {
-    res.status(404).json('Não encontrado!');
-});
+require('./error-handling')(app); 
 
 module.exports = app;
