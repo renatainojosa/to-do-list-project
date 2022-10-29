@@ -6,6 +6,7 @@ const app = express();
 require('./db')
 
 //configurações
+require('./configs')(app);
 
 //rotas
 
