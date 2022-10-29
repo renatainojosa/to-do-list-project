@@ -8,9 +8,17 @@ const userSchema = new Schema({
         trim: true,
         lowercase: true,
     },
-    password: {
+    email: {
         type: String,
-        require: true,
+        required: true,
+        unique: true,
+        trim: true,
+        lowercase: true,
+        match: [/^\S+@\S+\.\S+$/],
+    },
+    passwordHash: {
+        type: String,
+        required: true,
     },
     todos: [Schema.Types.ObjectId],
     profileImgUrl: {
