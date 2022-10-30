@@ -9,7 +9,7 @@ const todoSchema = new Schema({
         type: Boolean,
         default: false
     },
-    userId: Schema.Types.ObjectId
+    user: Schema.Types.ObjectId
 });
 
 module.exports = model('Todo', todoSchema)

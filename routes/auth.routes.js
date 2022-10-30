@@ -9,6 +9,15 @@ const User = require('../models/User.model');
 
 const saltRounds = 10;
 
+router.get('/', async (req, res, next) => {
+    try {
+        const usersFromDB = await User.find()
+        res.status(200).json(usersFromDB)        
+    } catch (error) {
+        next(error)
+    }
+});
+
 router.post('/signup', async (req, res, next) => {
     const {username, email, password} = req.body;
     try {

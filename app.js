@@ -10,6 +10,7 @@ require('./configs')(app);
 
 //rotas
 app.use('/auth', require('./routes/auth.routes'));
+app.use('/todolist', require('./routes/todo.routes'))
 
 //erros
 require('./error-handling')(app); 
