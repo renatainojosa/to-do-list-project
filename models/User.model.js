@@ -20,7 +20,7 @@ const userSchema = new Schema({
         type: String,
         required: true,
     },
-    todos: [Schema.Types.ObjectId],
+    todos: [{ type: Schema.Types.ObjectId, ref: 'Todo'}],
     profileImgUrl: {
         type: String,
         default: 'images/default-avatar.png'

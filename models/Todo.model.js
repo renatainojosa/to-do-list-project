@@ -1,5 +1,6 @@
 const { Schema, model } = require('mongoose');
 
+
 const todoSchema = new Schema({
     description: {
         type: String,
@@ -9,7 +10,7 @@ const todoSchema = new Schema({
         type: Boolean,
         default: false
     },
-    user: Schema.Types.ObjectId
+    userId: {type: Schema.Types.ObjectId, ref: 'User'}
 });
 
 module.exports = model('Todo', todoSchema)
