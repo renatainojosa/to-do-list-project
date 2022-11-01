@@ -17,4 +17,15 @@ router.post('/new-task', async (req, res, next) => {
     }
 });
 
+router.get('/', async (req, res, next) => {
+    const {_id} = req.payload; 
+    try {
+        const userFromDB = await User.findById(_id)
+        res.status(200).json(userFromDB.todos)  
+    } catch (error) {
+        console.error('Error trying to find tasks', error);
+        res.status(500).json(error)
+    }
+})
+
 module.exports = router;
