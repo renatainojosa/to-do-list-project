@@ -41,6 +41,19 @@ router.put('/:taskId', async (req, res, next) => {
     }
 });
 
+router.put('/:taskId/done', async (req, res, next) => {
+    const {taskId} = req.params;
+    const {done} = req.body;
+
+    try {
+        const taskFromDB = await Todo.findByIdAndUpdate(taskId, {done}, {new: true});
+        res.status(200).json(taskFromDB)
+    } catch (error) {
+        console.error('Error trying to find task', error);
+        res.status(500).json(error)
+    }
+})
+
 router.delete('/:taskId', async (req, res, next) => {
     const {taskId} = req.params;
     const {_id} = req.payload;
