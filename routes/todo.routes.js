@@ -61,7 +61,7 @@ router.delete('/:taskId', async (req, res, next) => {
     try {
         const taskFromDB = await Todo.findByIdAndRemove(taskId)
         await User.findByIdAndUpdate(_id, { $pull: {todos: taskId}}, {new: true})
-        res.status(201).json(taskFromDB)
+        res.status(204).json(taskFromDB)
     } catch (error) {
         console.error('Error trying to delete task', error);
         res.status(500).json(error)
